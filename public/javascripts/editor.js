@@ -69,8 +69,5 @@ $(document).ready(function() {
             });
            });
        });
-       $('#wmd-input').change(function() {
-          alert('changing');
-       });
        hljs.initHighlightingOnLoad();
 });
