@@ -30,14 +30,14 @@ object Slides extends Controller {
   }.toList
 
   def index = Action {
-    DB.withConnection { implicit c =>
-      Ok(views.html.Slides.editor(all, slideForm))
+    DB.withConnection { implicit c => 
+      Ok(views.html.Slides.slideshow())
     }
   }
  
-  def show = Action {
-    DB.withConnection { implicit c => 
-      Ok(views.html.Slides.slideshow())
+  def edit = Action {
+    DB.withConnection { implicit c =>
+      Ok(views.html.Slides.editor(all, slideForm))
     }
   }
   

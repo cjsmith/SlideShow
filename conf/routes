@@ -9,7 +9,7 @@ GET     /                           controllers.Application.index
 GET     /slides/                    controllers.Slides.index
 POST    /slides/                    controllers.Slides.create
 GET     /slides/slides              controllers.Slides.slides
-GET     /slides/show                controllers.Slides.show
+GET     /slides/edit                controllers.Slides.edit
 POST    /slides/updatePositions     controllers.Slides.updatePositions
 PUT     /slides/:id                 controllers.Slides.update(id:Long)
 POST    /slides/:id                 controllers.Slides.delete(id:Long)
