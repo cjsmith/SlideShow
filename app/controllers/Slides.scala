@@ -62,16 +62,17 @@ object Slides extends Controller {
 
   def update(id: Long) = Action { implicit req =>
     DB.withConnection { implicit c =>
-      slideForm.bindFromRequest.fold(
-        slideFormWithErrors => BadRequest(views.html.Slides.editor(all, slideFormWithErrors)),
-        slide => {
-	      SQL("update Slide set markdown={markdown}, position={position} where id={id}").on(
+      req.body.asJson.map { json =>
+  	    val slide = com.codahale.jerkson.Json.parse[Slide](Json.stringify(json))
+	    SQL("update Slide set markdown={markdown}, position={position} where id={id}").on(
 	        'id -> id,
 	        'markdown -> slide.markdown,
 	        'position -> slide.position).executeUpdate()
-          Redirect(routes.Slides.index)
-        }
-      ) 
+          Redirect(routes.Slides.edit)
+	}.getOrElse {
+	  println("bad request - no json")
+	  BadRequest("Expecting Json data")
+	} 
     }
   }
 

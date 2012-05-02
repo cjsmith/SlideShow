@@ -10,8 +10,14 @@ $(document).ready(function() {
      editor.run();
      $("#slideForm").submit(function(e) {
          $.ajax({type:'PUT',
-                url:$(this).attr('action'), 
-                data:'markdown=' + $("#wmd-input").val() + '&id=' + $("#slideId").val() + '&position=' +  $("#position").val()
+                 url:$(this).attr('action'), 
+                 data:JSON.stringify({
+                     markdown:$("#wmd-input").val(),
+                     id:$("#slideId").val(), 
+                     position:$("#position").val()
+                 }),
+                 dataType:'json',
+                 contentType:'application/json'
          });
          e.preventDefault();
          return false;             
@@ -64,10 +70,7 @@ $(document).ready(function() {
            });
        });
        $('#wmd-input').change(function() {
-           $.ajax({type:'PUT',
-                   url:$('#slideForm').attr('action'), 
-                   data:'markdown=' + $('#wmd-input').val() + '&position=' + $('#position').val()  + '&id=' + $('#slideId').val() 
-           });
+          alert('changing');
        });
        hljs.initHighlightingOnLoad();
 });
