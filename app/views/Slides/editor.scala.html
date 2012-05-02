@@ -1,0 +1,47 @@
+@(slides: List[Slide], slideForm: Form[Slide])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("SlideShow") {
+  <script src="@routes.Assets.at("javascripts/editor.js")" type="text/javascript"></script>
+   <div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span2">
+	      <!--Sidebar content-->
+           <a class="btn btn-primary btn-small" href="/slides/show">Play</a>
+	        <div id="slides-nav" class="well sidebar-nav">
+            <ul id="slides" class="nav nav-list">
+              <li class="nav-header">Slides</li>
+            </ul>
+	        </div>
+		    @form(routes.Slides.create) {
+          <input type="hidden" name="id" value="0"/>
+          <input class="btn btn-primary btn-small" type="submit" value="+">
+          <input type="hidden" name="markdown" value="new slide"/>
+          <input type="hidden" name="position" value="@(slides.size+1)"/>
+        }
+	    </div>
+	    <div class="span10">
+	      <!--Body content-->
+	      <div class="container-fluid">
+			  <div class="row-fluid">
+			    <div class="span5">
+				    @form(routes.Slides.update(0), args = 'id -> "slideForm") {
+				        <div id="wmd-button-bar"></div>
+				        <textarea id="wmd-input" class="wmd-input" name="markdown" rows="3" cols="50"></textarea>
+				        <input type="hidden" id="slideId" name="id"/>
+				        <input type="hidden" id="position" name="position" class="wmd-input"/>
+				        <input id="saveButton" type="submit" value="Save">
+				    }
+			      <!--Sidebar content-->
+			    </div>
+			    <div class="span5">
+			    	<div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+			    </div>
+			  </div>
+			</div>
+            </div>
+     </div>
+   </div> 
+}
