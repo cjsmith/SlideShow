@@ -55,7 +55,7 @@ object Slides extends Controller {
           SQL("insert into Slide (markdown, position) values ({markdown},{position})").on(
             'markdown -> slide.markdown,
             'position -> slide.position).executeUpdate()
-          Redirect(routes.Slides.index)
+          Redirect(routes.Slides.edit)
         })
     }
   }
