@@ -45,7 +45,10 @@ $(document).ready(function () {
                     $.ajax({
                         type: 'DELETE',
                         url: $('#deleteForm' + slide.id).attr('action'),
-                        success: updatePositions
+                        success: function() {
+                            $("#slide" + slide.id).remove();
+                            updatePositions();
+                        }
                     });
                     e.preventDefault();
                     return false;
@@ -59,7 +62,7 @@ $(document).ready(function () {
     function updatePositions() {
         var slidePositions = {};
         var position = 0;
-        $.each($(this).children(".slide"), function (i, child) {
+        $.each($("#slides").children(".slide"), function (i, child) {
             var slideId = $(child).data("slide-id");
             if (slideId) {
                 slidePositions[slideId] = ++position;
