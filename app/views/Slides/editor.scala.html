@@ -34,6 +34,9 @@
 				        <input type="hidden" id="position" name="position" class="wmd-input"/>
 				        <input class="btn btn-primary" id="saveButton" type="submit" value="Save">
 				    }
+                    @form(routes.Slides.delete(0), args = 'id -> "deleteForm") {
+				        <input class="btn btn-primary" id="deleteButton" type="submit" value="Delete">
+                    }
 			      <!--Sidebar content-->
 			    </div>
 			    <div class="span5">

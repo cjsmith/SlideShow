@@ -26,9 +26,6 @@ $(document).ready(function () {
                             <div class="miniSlide"> \
                                 {{{renderMD}}} \
                             </div> \
-                            <form id="deleteForm{{id}}" action="/slides/{{id}}" method="POST"> \
-                                <input class="btn btn-primary btn-small" type="submit" value="Delete"/> \
-                            </form> \
                         </a> \
                     </li>', slide));
                 $('#slide' + slide.id).click(function () {
@@ -38,20 +35,10 @@ $(document).ready(function () {
                     $("#slideId").val(slide.id);
                     $("#position").val(slide.position);
                     $("#slideForm").attr("action", "/slides/" + slide.id);
+                    $("#deleteForm").attr("action", "/slides/" + slide.id);
+                    $("#deleteForm").data("slide-id", slide.id);
                     editor.refreshPreview();
                     selectedSlide = '#slide' + slide.id;
-                });
-                $('#deleteForm' + slide.id).submit(function (e) {
-                    $.ajax({
-                        type: 'DELETE',
-                        url: $('#deleteForm' + slide.id).attr('action'),
-                        success: function() {
-                            $("#slide" + slide.id).remove();
-                            updatePositions();
-                        }
-                    });
-                    e.preventDefault();
-                    return false;
                 });
             });
             $(selectedSlide).click();
@@ -90,6 +77,23 @@ $(document).ready(function () {
             contentType: 'application/json',
             success: refreshSlides
         });
+        e.preventDefault();
+        return false;
+    });
+
+    $('#deleteForm').submit(function (e) {
+        var confirmed = confirm("Are you sure you want to delete a slide?");
+        if (confirmed==true) {
+            $.ajax({
+                type: 'DELETE',
+                url: $('#deleteForm').attr('action'),
+                success: function() {
+                    var slideId = $("#deleteForm").data("slide-id");
+                    $("#slide" + slideId).remove();
+                    updatePositions();
+                }
+            });
+        }
         e.preventDefault();
         return false;
     });
