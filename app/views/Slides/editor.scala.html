@@ -1,4 +1,4 @@
-@(slides:List[Slide], slideForm: Form[Slide])
+@(slides:List[models.Slide], slideForm: Form[models.Slide])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -32,7 +32,7 @@
 				        <textarea id="wmd-input" class="wmd-input" name="markdown" rows="3" cols="50"></textarea>
 				        <input type="hidden" id="slideId" name="id"/>
 				        <input type="hidden" id="position" name="position" class="wmd-input"/>
-				        <input id="saveButton" type="submit" value="Save">
+				        <input class="btn btn-primary" id="saveButton" type="submit" value="Save">
 				    }
 			      <!--Sidebar content-->
 			    </div>

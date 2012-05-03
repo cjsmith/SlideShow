@@ -2715,8 +2715,8 @@ button.close {
 }
 
 .btn-primary {
-  background-color: #398b6f;
-  *background-color: #62b39b;
+  background-color: #0074cc;
+  *background-color: #0055cc;
   background-image: -ms-linear-gradient(top, #0088cc, #0055cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0055cc));
   background-image: -webkit-linear-gradient(top, #0088cc, #0055cc);
@@ -2735,7 +2735,7 @@ button.close {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-  background-color: #62b39b;
+  background-color: #0055cc;
   *background-color: #004ab3;
 }
 
