@@ -12,7 +12,7 @@ GET     /slides/slides              controllers.Slides.slides
 GET     /slides/edit                controllers.Slides.edit
 POST    /slides/updatePositions     controllers.Slides.updatePositions
 PUT     /slides/:id                 controllers.Slides.update(id:Long)
-POST    /slides/:id                 controllers.Slides.delete(id:Long)
+DELETE  /slides/:id                 controllers.Slides.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

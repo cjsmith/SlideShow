@@ -1,4 +1,4 @@
-@(slides: List[Slide], slideForm: Form[Slide])
+@(slides:List[Slide], slideForm: Form[Slide])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -15,19 +15,19 @@
               <li class="nav-header">Slides</li>
             </ul>
 	        </div>
-		    @form(routes.Slides.create) {
-          <input type="hidden" name="id" value="0"/>
-          <input class="btn btn-primary btn-small" type="submit" value="+">
-          <input type="hidden" name="markdown" value="new slide"/>
-          <input type="hidden" name="position" value="@(slides.size+1)"/>
-        }
+            @form(routes.Slides.create, args = 'id -> "createForm") {
+              <input type="hidden" name="id" value="0"/>
+              <input class="btn btn-primary btn-small" type="submit" value="+">
+              <input type="hidden" name="markdown" value="new slide"/>
+              <input type="hidden" name="position" value="@(slides.size+1)"/>
+            }
 	    </div>
 	    <div class="span10">
 	      <!--Body content-->
 	      <div class="container-fluid">
 			  <div class="row-fluid">
 			    <div class="span5">
-				    @form(routes.Slides.update(0), args = 'id -> "slideForm") {
+				    @form(routes.Slides.update(0), args = 'id -> "updateForm") {
 				        <div id="wmd-button-bar"></div>
 				        <textarea id="wmd-input" class="wmd-input" name="markdown" rows="3" cols="50"></textarea>
 				        <input type="hidden" id="slideId" name="id"/>

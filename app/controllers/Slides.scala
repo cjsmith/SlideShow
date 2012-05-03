@@ -30,9 +30,7 @@ object Slides extends Controller {
   }.toList
 
   def index = Action {
-    DB.withConnection { implicit c => 
-      Ok(views.html.Slides.slideshow())
-    }
+     Ok(views.html.Slides.slideshow())
   }
  
   def edit = Action {
@@ -80,7 +78,7 @@ object Slides extends Controller {
     DB.withConnection { implicit c =>
       SQL("delete from Slide where id={id}").on(
         'id -> id).executeUpdate()
-      Redirect(routes.Slides.index)
+      Ok("slide deleted")
     }
   }
 
